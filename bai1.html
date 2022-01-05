@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<form action="./bai1.php" method="POST">
+			 Ma khach hang
+			<input type="text" placeholder="MS_001" name="makh" id="makh" />
+			 ho ten khach hang
+			<input type="text" name="tenkh" id="tenkh" />
+			diachi <input type="text" name="diachi" id="diachi" />
+			dienthoai
+			<input type="text" name="dt" id="dt" />         
+			<input type="submit" value="Them" name="Them" id="Them" />
+		</form>
+		 
+		<div id="result"></div>
+
+		<script>
+			$(document).ready(function () {
+				$('#Them').on('click', function (e) {
+					e.preventDefault();
+					$.ajax({
+						type: 'POST',
+						url: 'http://localhost:5505/bai1.php',
+						dataType: 'text',
+						data: {
+							makh: $('#makh').val(),
+							tenkh: $('#tenkh').val(),
+							diachi: $('#diachi').val(),
+							dienthoai: $('#dt').val(),
+						},
+						success: function (response) {
+							$('#result').html(response);
+						},
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
